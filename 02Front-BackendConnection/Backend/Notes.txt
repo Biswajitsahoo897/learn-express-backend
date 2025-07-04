@@ -1,3 +1,24 @@
-there are two ways to access the file one way is commonjs 
-another is modules 
+There are two ways to access the file one way is commonjs &
+Another is modules 
 we have to set this at the time of 'npm init' type:"module"
+
+
+
+--------------------------------------------
+DONT USE THIS APPROACH EVER ,IT'S VERY BAD
+--------------------------------------------
+
+
+we can also run 'npm run bulid' in the frontend but have to copy that build folder to the backend 
+
+use a middleware 
+
+by this one line
+
+app.use(express.static('dist'))//static file serving dist
+
+But the problem is if someone changed the frontend CODE ,that won't propagate to the backend 
+You have to again run command and copy paste that folder so...
+so the best practice is to segregate them 
+
+but it's cost effective , u r money got saved ,because no CI/CD ,no devops ,no frontend eng effective

@@ -2,6 +2,13 @@ import express from 'express'
 
 const app=express()
 
+// VERY BAD APPROACH
+// app.use(express.static('dist'))//static file serving dist
+
+// app.get('/',(req,res)=>{
+//     res.send('Server is ready!!')
+// })
+
 app.get('/api/jokes',(req,res)=>{
     const jokes=[
         {
