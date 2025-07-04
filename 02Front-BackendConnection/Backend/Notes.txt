@@ -1,0 +1,3 @@
+there are two ways to access the file one way is commonjs 
+another is modules 
+we have to set this at the time of 'npm init' type:"module"

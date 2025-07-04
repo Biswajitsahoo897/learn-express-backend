@@ -1,0 +1,25 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "How to connect backend and frontend",
+  "homepage": "https://github.com/Biswajitsahoo897/learn-express-backend#readme",
+  "bugs": {
+    "url": "https://github.com/Biswajitsahoo897/learn-express-backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Biswajitsahoo897/learn-express-backend.git"
+  },
+  "license": "ISC",
+  "author": "Biswajit",
+  "type": "module",
+  
+  "main": "Server.js",
+  "scripts": {
+    "test": "start",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
