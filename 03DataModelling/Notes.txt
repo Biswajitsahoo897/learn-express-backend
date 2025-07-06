@@ -1,0 +1,10 @@
+#1
+MongoDB as the database
+uses:
+Store & retrieve data
+
+
+#2
+Mongoose as the bridge/tool to interact with that database in Node.js
+it is a ODM Library
+Model & validate data in Node.js
