@@ -1,0 +1,42 @@
+// Appoeach 1 by index.js method which is a complete mess 
+
+
+/*
+
+import { connect } from "mongoose";
+
+import mongoose from 'mongoose'
+import { DB_NAME } from './constants';
+import express from 'express'
+const app=express()
+// the semi-colon is for the syntax error purpose 
+;(async()=>{
+    try {
+        await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
+        // listener part
+        app.on("error",(e)=>{
+            console.log("ERR:",e);
+            throw e            
+        })
+
+        app.listen(process.env.PORT,()=>{
+            console.log(`App is listening on port ${process.env.PORT}`);            
+        })
+    } catch (error) {
+        console.error('Error:',error);
+        throw error
+    }
+})()
+
+*/
+
+// Approach 2
+// require('dotenv').config()
+import dotenv from 'dotenv'
+import connectDB from './db/index.js'
+
+dotenv.config({
+    path:'./env'
+})
+
+connectDB()
