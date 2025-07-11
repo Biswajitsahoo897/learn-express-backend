@@ -40,6 +40,7 @@ const videoSchma=new Schema({
 
 },{timestamps:true})
 
+// Add reusable behaviors to schemas
 videoSchma.plugin(mongooseAggregatePaginate)
 
 export const Video=mongoose.model("Video",videoSchma)
