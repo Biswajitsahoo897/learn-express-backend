@@ -2,8 +2,12 @@ import express from 'express'
 import cors from 'cors'
 // Cookies are small pieces of data that are stored on the client's browser.
 /*
-CORS(Cross-Origin Resource Sharing) is a middleware that allows your frontend application, which is hosted on a different domain or port, to make requests to your backend server. It's necessary to avoid browser security restrictions
-`cookie-parser` is a middleware used with Express.js to parse cookies attached to the client's requests. It makes the cookie data accessible in the `req.cookies` object, which allows your application to easily read and manage cookies sent by the client's browser.
+CORS(Cross-Origin Resource Sharing) is a middleware that allows your frontend application, 
+which is hosted on a different domain or port, to make requests to your backend server. 
+It's necessary to avoid browser security restrictions
+`cookie-parser` is a middleware used with Express.js to parse cookies attached to the client's requests.
+It makes the cookie data accessible in the `req.cookies` object, 
+which allows your application to easily read and manage cookies sent by the client's browser.
 
 */
 
