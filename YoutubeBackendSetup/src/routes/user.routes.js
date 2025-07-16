@@ -6,6 +6,7 @@ import { verifyJWT } from "../middlewares/auth.middleware.js";
 const router=Router()
 
 router.route('/register').post(
+    // it accepts two fields avatar and coverImage , then it calls the registerUser for registration
     upload.fields([
         {
             name:"avatar",
