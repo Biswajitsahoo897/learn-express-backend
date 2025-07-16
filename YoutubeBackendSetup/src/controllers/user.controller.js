@@ -218,11 +218,126 @@ const refreshAccessToken=asyncHandler(async (req,res) => {
         
     }
 })
+
+const changeCurrentPassword=asyncHandler(async (req,res) => {
+    const {oldPassword,newPassword}=req.body
+
+    // if(!(newPassword===confPassword)){
+    //     throw new ApiError(400,"Please write the Password properly")
+    // }
+
+    const user=await User.findById(req.user?._id)
+    const isPasswordCorrect=user.isPasswordCorrect(oldPassword)
+    if(!isPasswordCorrect){
+        throw new ApiError(400,"Invalid Old Password,Please Try Again...")
+    }
+    user.password=newPassword
+    await user.save({validateBeforeSave:false})
+
+    return res
+    .status(200)
+    .json(new ApiResponse(200,{},"Password Changed Successfully."))
+})
+
+const getCurrentUser=asyncHandler(async (req,res) => {
+    return res
+    .status(200)
+    .json(200,req.user,"Current user fetched Successfully")
+})
+
+const updateAccountDetails=asyncHandler(async (req,res) => {
+    const {fullName,email}=req.body
+    if(!fullName||!email){
+        throw new ApiError(400,"All fields are required")
+    }
+    const user=await User.findByIdAndUpdate(
+        req.user?._id,
+        {
+            $set:{
+                fullName,//as both field is same i can write it once ,ES6 property
+                email:email
+            }
+        },
+        {new:true}
+    ).select("-password")
+
+    return res
+    .status(200)
+    .json(new ApiError(200,user,"Account Details Updated Successfully"))
+})
+
+const updateUserAvatar=asyncHandler(async(req,res)=>{
+
+    const avatarLocalPath=req?.files?.avatar?.[0]?.path;
+    if(!avatarLocalPath){
+        throw new ApiError(400,"Avatar File is Missing!!")
+    }
+
+    const avatarUpload =await uploadOnCloudinary(avatarLocalPath)
+    if(!avatarUpload.url){
+        throw new ApiError(400,"Error while Uploading The Avatar File")
+    }
+
+    const user=await User.findByIdAndUpdate(
+        req.user?._id,
+        {
+            $set:{
+                avatarUpload:avatarUpload.url
+            }
+        },
+        {new:true}
+    ).select("-password")
+
+    return res
+    .status(200)
+    .json(new ApiError(200,user,"Avatar Updated Successfully"))
+})
+
+
+const updateUserCoverImage=asyncHandler(async(req,res)=>{
+    const coverImageLocalPath=req.files?.path
+    if(!coverImageLocalPath){
+        throw new ApiError(400,"Cover Image File is Missing!!")
+
+    }
+    const coverImageUpload =await uploadOnCloudinary(coverImageLocalPath)
+    if(!coverImageUpload.url){
+        throw new ApiError(400,"Error While Uploading The Cover Image File!!")
+    }
+
+    const user=await User.findByIdAndUpdate(
+        req.user?._id,
+        {
+            $set:{
+                coverImageUpload:coverImageUpload.url
+            }
+            // update the old url with new one,then return 
+        },
+        {new:true}
+    ).select("-password")
+
+    return res
+    .status(200)
+    .json(new ApiError(200,user,"CoverImage Updated Successfully"))
+})
+
 export {
     registerUser,
     loginUser,
     logoutUser,
-    refreshAccessToken
+    refreshAccessToken,
+    changeCurrentPassword,
+    getCurrentUser,
+    updateAccountDetails,
+    updateUserAvatar,
+    updateUserCoverImage
 }
 
 // In general we import it in app.js inside the 'src' Folder
+/*
+Useful Tips:
+if u want to edit the avatar or something , file related things ,
+make sure to do that in different controller , 
+make a button , save that, hit the EndPoint 
+
+*/
