@@ -12,7 +12,7 @@
 const asyncHandler = (requestHandler) => {
     return (req, res, next) => {
         Promise.resolve(requestHandler(req, res, next))
-            .catch((err) => next(err));
+        .catch((err) => next(err));
     };
 }
 export { asyncHandler }
@@ -33,7 +33,11 @@ const asyncHandler=(fn)=>async (req,res,next)=>{
 
 export {asyncHandler}
 
+
+/*
+    WHAT IS THE PURPOSE OF THIS CODE?
+
+This is a wrapper code will gonna help in every code we will write in future for the use, so we dont have to use try-catch block 
+every single time & it automatically forwards errors to your Express error handler so it is useful
+
 */
-
-
-// this is a wrapper code will gonna help in every code we will write in future for the use
