@@ -13,6 +13,8 @@
   "dependencies": {
     "body-parser": "^2.2.2",
     "express": "^5.2.1",
-    "nodemon": "^3.1.11"
+    "jsonwebtoken": "^9.0.3",
+    "nodemon": "^3.1.11",
+    "zod": "^4.3.5"
   }
 }
